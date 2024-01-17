@@ -15,7 +15,7 @@
 	   (provision '(udevmon))
 	   (requirement '(udev))
 	   (start #~(make-forkexec-constructor
-		     (list (string-append "udevmon" "-c" "/etc/")) ))
+		     (list (string-append "udevmon" "-c" "/etc/udevmon.yaml")) ))
 	   (stop #~(make-kill-destructor))))))
 
 (define udevmon-service-type
