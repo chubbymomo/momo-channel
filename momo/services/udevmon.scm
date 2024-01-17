@@ -21,10 +21,14 @@
 (define udevmon-service-type
   (service-type
    (name 'udevmon)
+   (description "Start udevmon")
    (extensions
     (list (service-extension shepherd-root-service-type
-			     udevmon-shepherd-service)))
-   (description "Start udevmon")))
+			     udevmon-shepherd-service)))))
 
 (define* (udevmon-service #:key (config (list)))
   (service udevmon-service-type config))
+
+(define* (zerotier-one-service #:key (config (list)))
+  (service zerotier-one-service-type config))
+
