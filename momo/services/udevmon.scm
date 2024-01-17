@@ -1,13 +1,30 @@
-(define-module (momo services linux))
+(define-module (momo services linux)
+  #:use-module (gnu packages)
+  #:use-module (gnu services)
+  #:use-module (gnu services shepherd)
+  #:use-module (momo packages keyboard)
+  #:export (udevmon-service))
+
+(define (udevmon-shepherd-config)
+  '())
+
+(define (udevmon-shepherd-service)
+  (lambda (config)
+    (list (shepherd-service
+	   (documentation "udevmon daemon")
+	   (provision '(udevmon))
+	   (requirement '(udev))
+	   (start #~(make-forkexec-constructor
+		     (list (string-append "udevmon" "-c" "/etc/")) ))
+	   (stop #~(make-kill-destructor))))))
 
 (define udevmon-service-type
-  (service
-   '(udevmon)
-   #:provides '(udevmon)
-   #:docstring "Run udevmon"
-   #:start (make-forkexec-constructor
-            '("udevmon" "-c /etc/udevmon.yaml"))
-   #:stop (make-kill-destructor)
-   #:respawn? #t))
+  (service-type
+   (name 'udevmon)
+   (extensions
+    (list (service-extension shepherd-root-service-type
+			     udevmon-shepherd-service)))
+   (description "Start udevmon")))
 
-(register-services udevmon)
+(define* (udevmon-service #:key (config (list)))
+  (service udevmon-service-type config))
