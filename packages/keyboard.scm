@@ -33,5 +33,3 @@ Make what's useful comfortably present, just below your Pinky
 By moving both ESC and CTRL functions to the CAPSLOCK location")
    (home-page "https://gitlab.com/interception/linux/plugins/caps2esc")
    (license gpl3+))))
-  
-caps2esc
