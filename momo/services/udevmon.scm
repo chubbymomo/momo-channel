@@ -1,4 +1,4 @@
-(define-module (momo services linux)
+(define-module (momo services udevmon)
   #:use-module (gnu packages)
   #:use-module (gnu services)
   #:use-module (gnu services shepherd)
@@ -28,7 +28,3 @@
 
 (define* (udevmon-service #:key (config (list)))
   (service udevmon-service-type config))
-
-(define* (zerotier-one-service #:key (config (list)))
-  (service zerotier-one-service-type config))
-
