@@ -1,6 +1,7 @@
 (define-module (momo services udevmon)
   #:use-module (gnu packages)
   #:use-module (gnu services)
+  #:use-module (guix gexp)
   #:use-module (gnu services shepherd)
   #:use-module (momo packages keyboard)
   #:export (udevmon-service))
