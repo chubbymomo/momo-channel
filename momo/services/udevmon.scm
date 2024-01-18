@@ -16,7 +16,7 @@
 	   (provision '(udevmon))
 	   (requirement '(udev))
 	   (start #~(make-forkexec-constructor
-		     (list (string-append #$interception-tools "/bin/udevmon" " -c " "/etc/udevmon.yaml")
+		     (list (string-append #$interception-tools "/bin/udevmon" " -c " "/etc/udevmon.yaml"))
 		     #:log-file "/var/log/udevmon.log"))
 	   (stop #~(make-kill-destructor))))))
 
