@@ -8,7 +8,7 @@
 (define (udevmon-shepherd-config)
   '())
 
-(define (udevmon-shepherd-service)
+(define udevmon-shepherd-service
   (lambda (config)
     (list (shepherd-service
 	   (documentation "udevmon daemon")
