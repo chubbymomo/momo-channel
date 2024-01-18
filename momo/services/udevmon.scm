@@ -18,6 +18,7 @@
 	   (requirement '(udev))
 	   (start #~(make-forkexec-constructor
 		     (list (string-append #$interception-tools "/bin/udevmon" " -c " "/etc/udevmon.yaml"))
+		     #:environment-variables '("GUILE_WARN_DEPRECATED=detailed")
 		     #:log-file "/var/log/udevmon.log"))
 	   (stop #~(make-kill-destructor))))))
 
@@ -31,3 +32,4 @@
 
 (define* (udevmon-service #:key (config (list)))
   (service udevmon-service-type config))
+
