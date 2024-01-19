@@ -4,7 +4,7 @@
   #:use-module (gnu packages base)
   #:use-module (gnu services)
   #:use-module (gnu services shepherd)
-  #:use-module (gnu packages linux) ; Assuming interception-tools is in this module
+  #:use-module (gnu packages linux)
   #:export (udevmon-service))
 
 (define udevmon-shepherd-service
