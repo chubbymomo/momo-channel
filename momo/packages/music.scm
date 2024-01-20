@@ -1,8 +1,17 @@
 (define-module (momo packages music)
   #:use-module (momo licenses)
+  #:use-module (momo packages library)
   #:use-module (guix licenses)
   #:use-module (guix packages)
   #:use-module (gnu packages linux)
+  #:use-module (gnu packages gtk)
+  #:use-module (gnu packages freedesktop)
+  #:use-module (gnu packages nss)
+  #:use-module (gnu packages tls)
+  #:use-module (gnu packages xorg)
+  #:use-module (gnu packages video)
+  #:use-module (gnu packages gnome)
+  #:use-module (guix packages)
   #:use-module (guix build-system copy)
   #:use-module (guix download))
 
@@ -30,8 +39,8 @@
 				   (lambda* (#:key source #:allow-other-keys)
 				     (invoke "ar" "x" source)
 				     #t))
-		       (replace 'unpack 'unpack
-				(lambda* (#:allow-other-keys)
+		       (replace 'unpack
+				(lambda* (#:key #:allow-other-keys)
 				  (invoke "tar" "xvf" "./data.tar.gz")
 				  #t))
 		       (add-after 'unpack 'install
@@ -52,6 +61,22 @@
 				      (copy-recursively "usr/share/doc" (string-append out "/share/doc"))
 				      (copy-file "usr/share/spotify/spotify.desktop" (string-append applications "/spotify.desktop"))
 				      #t))))))
+     (inputs
+      (list alsa-lib
+	    gtk
+	    libxss
+	    desktop-file-utils
+	    openssl
+	    nss
+	    at-spi2-atk
+	    gnutls
+	    libsm
+	    libayatana-appindicator
+	    ))
+     (propagated-inputs
+      (list ffmpeg
+	    zenity
+	    libnotify))
      (synopsis "Spotify is a digital music streaming service that offers users access to millions of songs, podcasts, and videos from artists all over the world. It provides both free and premium subscription options, allowing users to listen to content with varying levels of control and without the need for downloading.")
      (description
       "Spotify is a popular streaming platform that allows users to access a vast library of music, podcasts, and videos. Users can create and share playlists, discover new music through personalized recommendations, and connect with artists' profiles. The platform operates on a freemium model, offering a free, ad-supported version and a premium version with additional features like offline listening and ad-free playback. Spotify integrates social features, enabling users to see what their friends are listening to and share music on social media. It's accessible on various devices, including smartphones, computers, and smart speakers, providing a seamless listening experience.
