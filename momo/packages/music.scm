@@ -1,6 +1,6 @@
 (define-module (momo packages music)
   #:use-module (momo licenses)
-  #:use-module (momo packages library)
+  #:use-module (momo packages libraries)
   #:use-module (guix licenses)
   #:use-module (guix packages)
   #:use-module (gnu packages linux)
