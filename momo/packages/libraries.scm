@@ -6,6 +6,7 @@
   #:use-module (gnu packages base)
   #:use-module (guix packages)
   #:use-module (gnu packages gtk)
+  #:use-module (gnu packages autotools)
   #:use-module (gnu packages gcc)
   #:use-module (gnu packages python)
   #:use-module (gnu packages gnome)
@@ -35,7 +36,8 @@
      (native-inputs
       (list xorgproto
 	    libx11
-	    util-macros))
+	    util-macros
+	    automake))
      (inputs
       (list libxext
 	    libx11
