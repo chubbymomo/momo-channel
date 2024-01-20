@@ -23,7 +23,7 @@
 		"0l8ixgwni27vyf538pqxfnfyylyvgb5min5n20qkaj2kss5xzaw3"))))
      (build-system copy-build-system)
      (arguments
-      `(#:tests #false
+      `(#:tests? #false
 	#:phases
 	(modify-phases %standard-phases
 		       (add-before 'unpack 'undeb
