@@ -8,6 +8,8 @@
   #:use-module (gnu packages gtk)
   #:use-module (gnu packages autotools)
   #:use-module (gnu packages gcc)
+  #:use-module (gnu packages version-control)
+  #:use-module (gnu packages pkg-config)
   #:use-module (gnu packages python)
   #:use-module (gnu packages gnome)
   #:use-module (gnu packages glib)
@@ -37,11 +39,16 @@
       (list xorgproto
 	    libx11
 	    util-macros
-	    automake))
+	    libtool
+	    git
+	    pkg-config))
      (inputs
       (list libxext
 	    libx11
-	    glibc))
+	    glibc
+	    automake
+	    autoconf
+	    libtool))
      (synopsis "XScreenSaver - X11 Screen Saver extension client library")
      (description
       "XScreenSaver - X11 Screen Saver extension client library")
@@ -95,9 +102,11 @@
      (native-inputs
       (list gobject-introspection
 	    vala
-	    gtest))
+	    gtest
+	    pkg-config
+	    `(,glib "bin")))
      (inputs
-      (list gtk))
+      (list gtk+))
      (synopsis "The Ayatana Indicators project is the continuation of Application Indicators and System Indicators, two technologies developed by Canonical Ltd. for the Unity7 desktop.")
      (description
       "The Ayatana Indicators project is the continuation of Application Indicators and System Indicators, two technologies developed by Canonical Ltd. for the Unity7 desktop.
@@ -125,16 +134,19 @@ The Ayatana Indicators project is the new upstream for application indicators, s
 		"1c0pymlpxabh7iackv6i47gh81b7pxx194r07lpbxnz5x1kjxj1s"))))
      (build-system cmake-build-system)
      (arguments
-      `(#:tests? #false))
+      `(#:tests? #false
+	#:phases (modify-phases %standard-phases
+			 (delete 'validate-runpath))))
      (native-inputs
       (list gobject-introspection
-	    vala))
+	    vala
+	    pkg-config))
      (inputs
       (list ayatana-ido
 	    gdk-pixbuf
 	    glibc
-	    glib
-	    gtk))
+	    `(,glib "bin") 
+	    gtk+))
      (synopsis "The Ayatana Indicators project is the continuation of Application Indicators and System Indicators, two technologies developed by Canonical Ltd. for the Unity7 desktop.")
      (description
       "The Ayatana Indicators project is the continuation of Application Indicators and System Indicators, two technologies developed by Canonical Ltd. for the Unity7 desktop.
@@ -155,7 +167,7 @@ The Ayatana Indicators project is the new upstream for application indicators, s
      (source (origin
 	      (method git-fetch)
 	      (uri (git-reference
-		    (url "https://gitlab.com/interception/linux/plugins/caps2esc")
+		    (url "https://github.com/AyatanaIndicators/libayatana-appindicator")
 		    (commit commit)))
 	      
 	      (sha256
@@ -166,12 +178,14 @@ The Ayatana Indicators project is the new upstream for application indicators, s
       `(#:tests? #false))
      (native-inputs
       (list gobject-introspection
-	    vala))
+	    vala
+	    pkg-config
+	    ayatana-ido))
      (inputs
       (list gcc
 	    glib
 	    glibc
-	    gtk
+	    gtk+
 	    libayatana-indicator
 	    libdbusmenu))
      (synopsis "The Ayatana Indicators project is the continuation of Application Indicators and System Indicators, two technologies developed by Canonical Ltd. for the Unity7 desktop.")

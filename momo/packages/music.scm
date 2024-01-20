@@ -10,6 +10,7 @@
   #:use-module (gnu packages tls)
   #:use-module (gnu packages xorg)
   #:use-module (gnu packages video)
+  #:use-module (gnu packages autotools)
   #:use-module (gnu packages gnome)
   #:use-module (guix packages)
   #:use-module (guix build-system copy)
@@ -71,7 +72,7 @@
 	    at-spi2-atk
 	    gnutls
 	    libsm
-	    libayatana-appindicator
+	    ;;libayatana-appindicator
 	    ))
      (propagated-inputs
       (list ffmpeg
@@ -83,3 +84,5 @@
 ")
      (home-page "https://spotify.com")
      (license (nonfree "https://www.spotify.com/us/legal/end-user-agreement/")))))
+
+spotify
