@@ -84,5 +84,3 @@
 ")
      (home-page "https://spotify.com")
      (license (nonfree "https://www.spotify.com/us/legal/end-user-agreement/")))))
-
-spotify
