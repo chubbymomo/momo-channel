@@ -64,8 +64,7 @@
       `(#:tests? #false))
      (native-inputs
       (list gcc
-	    python
-	    gtest))
+	    python))
      (inputs
       (list gcc))
      (synopsis "")
