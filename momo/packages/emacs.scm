@@ -1,4 +1,4 @@
-(define-module (momo packages music)
+(define-module (momo packages emacs)
   #:use-module (momo licenses)
   #:use-module (guix licenses)
   #:use-module (guix packages)
