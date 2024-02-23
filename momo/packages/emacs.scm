@@ -5,18 +5,17 @@
   #:use-module (guix build-system emacs)
   #:use-module (guix git-download))
 
-(define-public emacs-dired-hide-dotfiles
-  
-(package
-  (name "emacs-dired-hide-dotfiles")
+(define-public emacs-dired-hide-dotfiles  
+  (package
+   (name "emacs-dired-hide-dotfiles")
    (version "20210222.1919")
    (source (origin
-             (method git-fetch)
-             (uri (git-reference
-                   (url "https://github.com/mattiasb/dired-hide-dotfiles.git")
-                   (commit "6a379f23f64045f5950d229254ce6f32dbbf5364")))
-             (sha256 (base32
-                      "0cwsjndvnv9a62ism7ckj27jdqx362947lyizka78qvmv369avv3"))))
+            (method git-fetch)
+            (uri (git-reference
+                  (url "https://github.com/mattiasb/dired-hide-dotfiles.git")
+                  (commit "6a379f23f64045f5950d229254ce6f32dbbf5364")))
+            (sha256 (base32
+                     "0cwsjndvnv9a62ism7ckj27jdqx362947lyizka78qvmv369avv3"))))
    (build-system emacs-build-system)
    (home-page "https://github.com/mattiasb/dired-hide-dotfiles")
    (synopsis "Hide dotfiles in dired")
@@ -26,7 +25,7 @@ init.el: (defun my-dired-mode-hook () \"My `dired mode hook.\" ;; To hide
 dot-files by default (dired-hide-dotfiles-mode)) ;; To toggle hiding (define-key
 dired-mode-map \".\" #'dired-hide-dotfiles-mode) (add-hook dired-mode-hook
 #'my-dired-mode-hook)")
-   (license #f)))
+   (license gpl3+)))
 
 (define-public emacs-treesit-auto
   (package
@@ -57,4 +56,3 @@ display a yes/no question in the minibuffer and wait for confirmation before
 attempting the installation.")
    (license gpl3+)))
 
-emacs-dired-hide-dotfiles
